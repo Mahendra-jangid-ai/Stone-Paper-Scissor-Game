@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Start - Rock Paper Scissors</title>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors - Start</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>Rock,  Paper,  Scissors </h1>
-    <form action="/start" method="post">
-        <label for="rounds">How many rounds do you want to play? (1-20)</label><br><br>
-        <input type="number" id="rounds" name="rounds" min="1" max="20" value="3" required>
-        <br><br>
-        <button type="submit">Start Game</button>
+<body class="bg-gradient-to-r from-blue-50 to-indigo-100 min-h-screen flex items-center justify-center">
+  <div class="bg-white shadow-lg rounded-2xl p-8 max-w-md w-full text-center">
+    <h1 class="text-3xl font-bold text-indigo-600 mb-6">Rock Paper Scissors</h1>
+    <form action="/start" method="post" class="space-y-4">
+      <label for="rounds" class="block text-gray-700 font-semibold">How many rounds do you want to play?</label>
+      <input type="number" id="rounds" name="rounds" min="1" max="20" value="3" required
+             class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none">
+      <button type="submit"
+              class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition">
+        Start Game
+      </button>
     </form>
+  </div>
 </body>
 </html>

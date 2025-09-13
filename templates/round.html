@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Round {{ current_round + 1 }} of {{ total_rounds }}</title>
+  <meta charset="UTF-8">
+  <title>Round {{ current_round + 1 }} of {{ total_rounds }}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>Round {{ current_round + 1 }} / {{ total_rounds }}</h1>
+<body class="bg-gradient-to-r from-pink-50 to-purple-100 min-h-screen flex items-center justify-center">
+  <div class="bg-white shadow-lg rounded-2xl p-8 max-w-md w-full text-center">
+    <h1 class="text-2xl font-bold text-purple-600 mb-4">Round {{ current_round + 1 }} / {{ total_rounds }}</h1>
 
     {% if message %}
-    <p style="color: red;">{{ message }}</p>
+    <p class="text-red-500 mb-3">{{ message }}</p>
     {% endif %}
 
-    <form action="/round" method="post">
-        <label>Choose:</label><br><br>
-        <select name="choice" required>
-            <option value="">-- select --</option>
-            <option value="rock">Rock </option>
-            <option value="paper">Paper </option>
-            <option value="scissors">Scissors </option>
-        </select>
-        <br><br>
+    <form action="/round" method="post" class="space-y-4">
+      <label class="block text-gray-700 font-semibold">Choose your move:</label>
+      <select name="choice" required
+              class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-400 focus:outline-none">
+        <option value="">-- select --</option>
+        <option value="rock"> Rock</option>
+        <option value="paper"> Paper</option>
+        <option value="scissors"> Scissors</option>
+      </select>
 
-        <input type="hidden" name="total_rounds" value="{{ total_rounds }}">
-        <input type="hidden" name="current_round" value="{{ current_round }}">
-        <input type="hidden" name="results_json" value="{{ results_json|tojson|safe }}">
-
-        <button type="submit">Submit Choice</button>
+      <button type="submit"
+              class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition">
+        Play
+      </button>
     </form>
 
-    <hr>
-    <p>Rounds completed: {{ current_round }} / {{ total_rounds }}</p>
+    <p class="mt-6 text-gray-600">Rounds completed: {{ current_round }} / {{ total_rounds }}</p>
+  </div>
 </body>
 </html>

@@ -1,28 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Final Results</title>
+  <meta charset="UTF-8">
+  <title>Final Results</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>Game Over</h1>
-    <h2>{{ final_winner }}</h2>
+<body class="bg-gradient-to-r from-green-50 to-teal-100 min-h-screen flex items-center justify-center">
+  <div class="bg-white shadow-lg rounded-2xl p-8 max-w-lg w-full">
+    <h1 class="text-3xl font-bold text-teal-600 mb-4">Game Over</h1>
+    <h2 class="text-xl font-semibold text-gray-800 mb-6">{{ final_winner }}</h2>
 
-    <p><strong>Summary:</strong></p>
-    <ul>
-        <li>You won: {{ you_wins }}</li>
-        <li>Machine won: {{ machine_wins }}</li>
-        <li>Ties: {{ ties }}</li>
+    <div class="grid grid-cols-3 gap-4 text-center mb-6">
+      <div class="p-4 bg-green-100 rounded-lg">
+        <p class="text-lg font-bold text-green-600">{{ you_wins }}</p>
+        <p class="text-gray-600">You Won</p>
+      </div>
+      <div class="p-4 bg-red-100 rounded-lg">
+        <p class="text-lg font-bold text-red-600">{{ machine_wins }}</p>
+        <p class="text-gray-600">Machine Won</p>
+      </div>
+      <div class="p-4 bg-gray-100 rounded-lg">
+        <p class="text-lg font-bold text-gray-600">{{ ties }}</p>
+        <p class="text-gray-600">Ties</p>
+      </div>
+    </div>
+
+    <h3 class="text-lg font-semibold text-gray-700 mb-3">Round by Round</h3>
+    <ul class="space-y-2 text-left">
+      {% for r in results %}
+      <li class="bg-gray-50 border rounded-lg p-3">
+        <span class="font-bold">Round {{ r.round }}:</span>
+        You <span class="text-indigo-600">{{ r.user }}</span>,
+        Machine <span class="text-pink-600">{{ r.machine }}</span>
+        → <span class="font-semibold">{{ r.result }}</span>
+      </li>
+      {% endfor %}
     </ul>
 
-    <h3>Round-by-round:</h3>
-    <ol>
-    {% for r in results %}
-        <li>Round {{ r.round }} — You: {{ r.user }}, Machine: {{ r.machine }} → {{ r.result }}</li>
-    {% endfor %}
-    </ol>
-
-    <br>
-    <a href="/">Play Again</a>
+    <a href="/"
+       class="block w-full mt-6 bg-teal-600 text-white py-2 rounded-lg hover:bg-teal-700 text-center transition">
+       Play Again
+    </a>
+  </div>
 </body>
 </html>
