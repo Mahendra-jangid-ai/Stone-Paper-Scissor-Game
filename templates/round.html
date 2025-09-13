@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Round {{ current_round + 1 }} of {{ total_rounds }}</title>
+</head>
+<body>
+    <h1>Round {{ current_round + 1 }} / {{ total_rounds }}</h1>
+
+    {% if message %}
+    <p style="color: red;">{{ message }}</p>
+    {% endif %}
+
+    <form action="/round" method="post">
+        <label>Choose:</label><br><br>
+        <select name="choice" required>
+            <option value="">-- select --</option>
+            <option value="rock">Rock </option>
+            <option value="paper">Paper </option>
+            <option value="scissors">Scissors </option>
+        </select>
+        <br><br>
+
+        <input type="hidden" name="total_rounds" value="{{ total_rounds }}">
+        <input type="hidden" name="current_round" value="{{ current_round }}">
+        <input type="hidden" name="results_json" value="{{ results_json|tojson|safe }}">
+
+        <button type="submit">Submit Choice</button>
+    </form>
+
+    <hr>
+    <p>Rounds completed: {{ current_round }} / {{ total_rounds }}</p>
+</body>
+</html>

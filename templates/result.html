@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Final Results</title>
+</head>
+<body>
+    <h1>Game Over</h1>
+    <h2>{{ final_winner }}</h2>
+
+    <p><strong>Summary:</strong></p>
+    <ul>
+        <li>You won: {{ you_wins }}</li>
+        <li>Machine won: {{ machine_wins }}</li>
+        <li>Ties: {{ ties }}</li>
+    </ul>
+
+    <h3>Round-by-round:</h3>
+    <ol>
+    {% for r in results %}
+        <li>Round {{ r.round }} — You: {{ r.user }}, Machine: {{ r.machine }} → {{ r.result }}</li>
+    {% endfor %}
+    </ol>
+
+    <br>
+    <a href="/">Play Again</a>
+</body>
+</html>
